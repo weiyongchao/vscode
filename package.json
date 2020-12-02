@@ -1,8 +1,9 @@
 {
 	"name": "weiyc",
 	"displayName": "weiyc",
+	"publisher":"weiyongchao",
 	"description": "weiyc",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.51.0"
 	},
@@ -11,7 +12,8 @@
 	],
 	"activationEvents": [
 		"onCommand:weiyc.helloWorld",
-		"onCommand:weiyc.helloVscode"
+		"onCommand:weiyc.helloVscode",
+		"onCommand:weiyc.insertLog"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -20,19 +22,56 @@
 				"command": "weiyc.helloWorld",
 				"title": "Hello World"
 			},
-				{
+			{
 				"command": "weiyc.helloVscode",
 				"title": "Hello Vscode"
+			},
+			{
+				"command": "weiyc.insertLog",
+				"title": "Insert Log Statement"
+			},
+			{
+				"command": "weiyc.delLog",
+				"title": "del Log"
+			},
+			{
+				"command": "weiyc.removeComments",
+				"title": "del Note"
 			}
 		],
-			"keybindings": [
+		"keybindings": [
 				{
-						"command": "firstExt.hello",
-						"key": "ctrl+w",
-						"mac": "cmd+shift+w",
+						"command": "weiyc.hello",
+						"key": "ctrl+e",
+						"mac": "cmd+shift+e",
+						"when": "editorTextFocus"
+				},
+				{
+						"command": "weiyc.insertLog",
+						"key": "shift+crtl+l",
+						"mac": "shift+cmd+l",
 						"when": "editorTextFocus"
 				}
-		]
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorTextFocus",
+					"command": "weiyc.insertLog",
+					"group": "navigation"
+				},
+				{
+					"when": "editorTextFocus",
+					"command": "weiyc.delLog",
+					"group": "navigation"
+				},
+				{
+					"when": "editorTextFocus",
+					"command": "weiyc.removeComments",
+					"group": "navigation"
+				}
+			]
+		}
   },
 	"scripts": {
 		"vscode:prepublish": "npm run package",
